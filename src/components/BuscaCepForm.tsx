@@ -26,12 +26,13 @@ const BuscaCep = () =>{
                     setUf(data.uf);
                 }
             ).catch(error => {console.error("Error:", error)});
+            console.log("localidade" + localidade);
         }
     }
 
     return (
         <div>
-            <form>
+            <form onSubmit={findCep}>
                 <label htmlFor="cep">CEP</label>
                 <input type="text" name="cep" id="cep" onChange={submitForm} />
                 <input type="submit" value="Pesquisar" />
