@@ -5,6 +5,7 @@ const BuscaCep = () =>{
     const [cep, setCep] = useState<string>("");
     const [localidade, setLocalidade] = useState<string>("");
     const [uf, setUf] = useState<string>("");
+    const [erro, setErro] = useState<string>("");
 
     const findCep = (e: FormEvent) => {
         e.preventDefault()
@@ -19,9 +20,9 @@ const BuscaCep = () =>{
         setLocalidade(data.localidade);
         setCep(data.cep);
         setUf(data.uf);
-    }).catch(error => {console.error("Error:", error)});
+    }).catch(error => {setErro("Pesquisa Inválida")});
 }
-console.log("Localidade: " + localidade);
+
 
 
     const submitForm = (e: ChangeEvent<HTMLInputElement>) => {
