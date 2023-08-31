@@ -7,28 +7,30 @@ const BuscaCep = () =>{
     const [uf, setUf] = useState<string>("");
 
     const findCep = (e: FormEvent) => {
-        e.preventDefault();
-    }
+        e.preventDefault()
+    
+    fetch('https://viacep.com.br/ws/' + cep + '/json/', {
+
+    method: 'GET'
+
+}).then(response => response.json())
+.then(
+    data =>{
+        setLocalidade(data.localidade);
+        setCep(data.cep);
+        setUf(data.uf);
+    }).catch(error => {console.error("Error:", error)});
+}
+console.log("Localidade: " + localidade);
+
 
     const submitForm = (e: ChangeEvent<HTMLInputElement>) => {
         if(e. target.name === "cep"){
             setCep(e.target.value);
-
-            fetch('viacep.com.br/ws' + cep + '/json/', {
-
-                method: 'GET'
-
-            }).then(response => response.json())
-            .then(
-                data =>{
-                    setLocalidade(data.localidade);
-                    setCep(data.cep);
-                    setUf(data.uf);
-                }
-            ).catch(error => {console.error("Error:", error)});
-            console.log("Localidade" + localidade);
         }
     }
+
+            
 
     return (
         <div>
@@ -37,7 +39,9 @@ const BuscaCep = () =>{
                 <input type="text" name="cep" id="cep" onChange={submitForm} />
                 <input type="submit" value="Pesquisar" />
             </form>
-            {cep}
+            <p>Cidade: {localidade}</p>
+            <p>UF: {uf}</p>
+            <p>CEP: {cep}</p>
         </div>
     );
 }
