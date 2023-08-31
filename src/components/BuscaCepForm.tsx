@@ -45,6 +45,7 @@ const BuscaCep = () =>{
             <p>Cidade: {localidade}</p>
             <p>UF: {uf}</p>
             <p>CEP: {cep}</p>
+            <p className={styles.error}>{erro}</p>
         </div>
     );
 }
