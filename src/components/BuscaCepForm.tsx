@@ -13,12 +13,12 @@ const BuscaCep = () =>{
             setCep(e.target.value);
         }
     }
-    
+
     return (
         <div>
             <form>
                 <label htmlFor="cep">CEP</label>
-                <input type="text" name="cep" id="cep" />
+                <input type="text" name="cep" id="cep" onChange={submitForm} />
                 <input type="submit" value="Pesquisar" />
             </form>
         </div>
