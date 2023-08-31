@@ -12,9 +12,8 @@ const BuscaCep = () =>{
         if(e. target.name === "cep"){
             setCep(e.target.value);
         }
-
-
     }
+    
     return (
         <div>
             <form>
