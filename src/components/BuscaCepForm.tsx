@@ -1,6 +1,20 @@
 import React, { useState, ChangeEvent, FormEvent, useEffect} from "react";
 
 const BuscaCep = () =>{
+
+    const [cep, setCep] = useState<string>("")
+
+    const findCep = (e: FormEvent) => {
+        e.preventDefault();
+    }
+
+    const submitForm = (e: ChangeEvent<HTMLInputElement>) => {
+        if(e. target.name === "cep"){
+            setCep(e.target.value);
+        }
+
+
+    }
     return (
         <div>
             <form>
@@ -9,7 +23,6 @@ const BuscaCep = () =>{
                 <input type="submit" value="Pesquisar" />
             </form>
         </div>
-
     );
 }
 
