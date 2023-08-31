@@ -1,5 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent, useEffect} from "react";
 
+import styles from "../App.module.css"
+
 const BuscaCep = () =>{
 
     const [cep, setCep] = useState<string>("");
