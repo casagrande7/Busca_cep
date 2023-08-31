@@ -21,6 +21,7 @@ const BuscaCep = () =>{
                 <input type="text" name="cep" id="cep" onChange={submitForm} />
                 <input type="submit" value="Pesquisar" />
             </form>
+            {cep}
         </div>
     );
 }
