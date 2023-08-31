@@ -26,7 +26,7 @@ const BuscaCep = () =>{
                     setUf(data.uf);
                 }
             ).catch(error => {console.error("Error:", error)});
-            console.log("localidade" + localidade);
+            console.log("Localidade" + localidade);
         }
     }
 
