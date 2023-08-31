@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, ChangeEvent, FormEvent, useEffect} from "react";
 
 const BuscaCep = () =>{
     return (
