@@ -22,6 +22,7 @@ const BuscaCep = () =>{
         setLocalidade(data.localidade);
         setCep(data.cep);
         setUf(data.uf);
+        setErro("")
     }).catch(error => {setErro("Pesquisa Inválida")});
 }
 
