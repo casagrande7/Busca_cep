@@ -1,7 +1,23 @@
+import axios from 'axios';
 import React, {Component, useState, ChangeEvent, FormEvent, useEffect} from 'react';
 import styles from "../App.module.css";
+import { CadastroInterface } from '../interfaces/CadastroInterface';
 
 const Listagem = () => {
+    const [usuarios, setUsuarios] = useState<CadastroInterface[]>([]);
+
+    useEffect(() => {
+        async function fechtdata(){
+            try{
+                const response = await axios
+
+            }catch(error){
+
+            }
+
+        }
+    });
+    
     return (
     <div>
     <main className={styles.main}>
