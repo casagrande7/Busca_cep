@@ -5,19 +5,28 @@ import { CadastroInterface } from '../interfaces/CadastroInterface';
 
 const Listagem = () => {
     const [usuarios, setUsuarios] = useState<CadastroInterface[]>([]);
+    const [error, setError] = useState("");
 
     useEffect(() => {
-        async function fechtdata(){
+        async function fechtData(){
             try{
-                const response = await axios
+                const response = await axios.get('http://10.137.9.132:8000/api/find');
+                setUsuarios(response.data.data);
+
 
             }catch(error){
+                setError("Ocorreu um erro");
+                console.log(error);
+
 
             }
-
         }
-    });
+
+        fechtData();
+    }, []);
     
+
+
     return (
     <div>
     <main className={styles.main}>
@@ -36,16 +45,18 @@ const Listagem = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Cláudio</td>
-                    <td>123.123.132-23</td>
-                    <td>claudio@senai.br</td>
+                {usuarios.map(usuario => (
+                <tr key={usuario.id}>
+                    <td>{usuario.id}</td>
+                    <td>{usuario.nome}</td>
+                    <td>{usuario.cpf}</td>
+                    <td>{usuario.email}</td>
                     <td>
                         <a href='#' className='btn btn-primary btn-sm'>Editar</a>
                         <a href='#' className='btn btn-danger btn-sm'>Excluir</a>
                     </td>
                 </tr>
+                ))}
             </tbody>
         </table>
 
