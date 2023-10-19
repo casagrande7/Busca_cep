@@ -1,7 +1,5 @@
 import axios from 'axios';
-import React, {
-    Component, useState, ChangeEvent, FormEvent, useEffect
-} from 'react';
+import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import styles from "../App.module.css";
 import { CadastroInterface } from '../interfaces/CadastroInterface';
 
@@ -22,14 +20,29 @@ const Listagem = () => {
         async function fetchData() {
             try {
 
+                const response = await axios.post('http://10.137.9.134:8000/api/findNome',
+                    { nome: pesquisa },
+                    {
+                        headers: {
+                            "Accept": "application/json",
+                            "Content-Type": "application/json"
+                        }
+                    }).then(function (response) {
+                        setUsuarios(response.data.data);
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+
+
             } catch (error) {
                 console.log(error);
             }
         }
+        fetchData();
     }
 
     useEffect(() => {
-        async function feachData() {
+        async function fetchData() {
             try {
                 const response = await axios.get('http://10.137.9.134:8000/api/find');
                 setUsuarios(response.data.data)
@@ -38,29 +51,26 @@ const Listagem = () => {
                 console.log(error);
             }
         }
-        feachData();
+        fetchData();
     }, []);
     return (
         <div>
             <main className={styles.main}>
                 <div className='container'>
-                    <div className='col-md mb-4'>
+                    <div className='col-md mb-3'>
                         <div className='card'>
                             <div className='card-body'>
-                                <div className='card-title'>
-                                    <h5>Pesquisar</h5>
-                                    <form className='row'>
-                                        <div className='col-10'>
-                                            <input type="text" className='form-control' name='pesquisa' onChange={handleState} />
-                                        </div>
-                                        <div className='col-1'>
-                                            <button type='submit' className='btn btn-success'>Pesquisar
+                                <h5 className='card-little'>Pesquisar</h5>
+                                <form onSubmit={buscar} className='row'>
+                                    <div className='col-10'>
+                                        <input type="text" name='pesquisa' className='form-control' onChange={handleState} />
+                                    </div>
+                                    <div className='col-1'>
+                                        <button type='submit' className='btn btn-success'>Pesquisar</button>
 
-                                            </button>
+                                    </div>
+                                </form>
 
-                                        </div>
-                                    </form>
-                                </div>
                             </div>
                         </div>
                     </div>

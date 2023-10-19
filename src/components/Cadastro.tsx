@@ -22,7 +22,7 @@ const Cadastro = () => {
             password: password
         }
 
-        axios.post('http://10.137.9.131:8000/api/store',
+        axios.post('http://10.137.9.134:8000/api/store',
         dados, 
         {
             headers: {
