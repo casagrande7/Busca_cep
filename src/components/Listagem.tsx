@@ -7,7 +7,27 @@ import { CadastroInterface } from '../interfaces/CadastroInterface';
 
 const Listagem = () => {
     const [usuarios, setUsuarios] = useState<CadastroInterface[]>([]);
+    const [pesquisa, setPesquisa] = useState<string>('');
     const [error, setError] = useState("");
+
+    const handleState = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.name === "pesquisa") {
+            setPesquisa(e.target.value);
+        }
+    }
+
+    const buscar = (e: FormEvent) => {
+        e.preventDefault();
+
+        async function fetchData() {
+            try {
+
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    }
+
     useEffect(() => {
         async function feachData() {
             try {
@@ -31,7 +51,7 @@ const Listagem = () => {
                                     <h5>Pesquisar</h5>
                                     <form className='row'>
                                         <div className='col-10'>
-                                            <input type="text" className='form-control' name='pesquisa' />
+                                            <input type="text" className='form-control' name='pesquisa' onChange={handleState} />
                                         </div>
                                         <div className='col-1'>
                                             <button type='submit' className='btn btn-success'>Pesquisar
