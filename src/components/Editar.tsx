@@ -2,6 +2,8 @@ import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from "r
 import styles from "../App.module.css";
 import Header from "./Header";
 import Footer from "./Footer";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 
 const Editar = () => {
@@ -11,12 +13,46 @@ const Editar = () => {
     const [cpf, setCpf] = useState<string>("");
     const [id, setId] = useState<number>();
 
+    const parametro = useParams();
+
     const atualizar = (e: FormEvent) => {
+        e.preventDefault();
+
+        const dados = {
+            id: id,
+            nome: nome,
+            email: email,
+            cpf: cpf
+        }
+
+        axios.put("http://10.137.9.134:8000/api/update", dados, {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        }).then(function(response){
+            window.location.href = "/listagem"
+        }).catch(function(error){
+            console.log("Ocorreu um erro ao atualizar");
+        });
 
     }
 
     useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await axios.get("http://10.137.9.134:8000/api/find/" + parametro.id);
+                setNome(response.data.data.nome);
+                setEmail(response.data.data.email);
+                setCpf(response.data.data.cpf);
+                setId(response.data.data.id);
 
+            } catch (error) {
+                console.log("Erro ao buscar dados da API");
+
+            }
+        }
+        fetchData();
     }, []);
 
     const handleState = (e: ChangeEvent<HTMLInputElement>) => {
@@ -33,11 +69,6 @@ const Editar = () => {
 
 
 
-
-
-
-
-
     return (
         <div>
             <Header />
@@ -45,20 +76,20 @@ const Editar = () => {
                 <div className='container'>
                     <div className='card'>
                         <div className='card-body'>
-                            <h5 className='card-title'>Cadastrar Clientes</h5>
+                            <h5 className='card-title'>Atualizar Clientes</h5>
                             <form onSubmit={atualizar} className='row g-3'>
                                 <div className='col-6'>
                                     <label htmlFor='nome' className='form-label'>Nome</label>
-                                    <input type="text" name='nome' className='form-control' required onChange={handleState} />
+                                    <input type="text" name='nome' className='form-control' required onChange={handleState} value={nome} />
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor='email' className='form-label'>E-mail</label>
-                                    <input type="text" name='email' className='form-control' required onChange={handleState} />
+                                    <input type="text" name='email' className='form-control' required onChange={handleState} value={email} />
 
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor='cpf' className='form-label'>CPF</label>
-                                    <input type="text" name='cpf' className='form-control' required onChange={handleState} />
+                                    <input type="text" name='cpf' className='form-control' required onChange={handleState} value={cpf} />
 
                                 </div>
 
