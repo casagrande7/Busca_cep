@@ -67,21 +67,21 @@ const Cadastro = () => {
                             <form onSubmit={cadastrarUsuario} className='row g-3'>
                                 <div className='col-6'>
                                     <label htmlFor='nome' className='form-label'>Nome</label>
-                                    <input type="text" name='nome' className='form-conrtrol' required onChange={handleState} /> 
+                                    <input type="text" name='nome' className='form-control' required onChange={handleState} /> 
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor='email' className='form-label'>E-mail</label>
-                                    <input type="text" name='email' className='form-conrtrol' required onChange={handleState} />
+                                    <input type="text" name='email' className='form-control' required onChange={handleState} />
 
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor='cpf' className='form-label'>CPF</label>
-                                    <input type="text" name='cpf' className='form-conrtrol' required onChange={handleState} />
+                                    <input type="text" name='cpf' className='form-control' required onChange={handleState} />
 
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor='password' className='form-label'>Senha</label>
-                                    <input type="text" name='password' className='form-conrtrol' required onChange={handleState} />
+                                    <input type="text" name='password' className='form-control' required onChange={handleState} />
 
                                 </div>
                                 <div className='col-12'>
