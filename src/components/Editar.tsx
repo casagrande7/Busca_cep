@@ -25,7 +25,7 @@ const Editar = () => {
             cpf: cpf
         }
 
-        axios.put("http://10.137.9.134:8000/api/update", dados, {
+        axios.put("http://10.137.9.136:8000/api/update", dados, {
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json"
@@ -41,7 +41,7 @@ const Editar = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get("http://10.137.9.134:8000/api/find/" + parametro.id);
+                const response = await axios.get("http://10.137.9.136:8000/api/find/" + parametro.id);
                 setNome(response.data.data.nome);
                 setEmail(response.data.data.email);
                 setCpf(response.data.data.cpf);
